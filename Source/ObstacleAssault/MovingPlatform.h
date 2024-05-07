@@ -32,4 +32,22 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool MyBool = true;
 
+	UPROPERTY(EditAnywhere)
+	int32 InputA;
+
+	UPROPERTY(EditAnywhere)
+	int32 InputB;
+
+	UPROPERTY(EditAnywhere)
+	int32 APlusB;
+
+	UPROPERTY(EditAnywhere)
+	float InputC;
+
+	UPROPERTY(EditAnywhere)
+	float InputD;
+
+	UPROPERTY(EditAnywhere)
+	float CPlusD;
+
 };
