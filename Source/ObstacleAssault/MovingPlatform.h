@@ -23,31 +23,17 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
-	int32 MyInt = 99;
+	FVector StartLocation;
 
-	UPROPERTY(EditAnywhere)
-	float MyFloat = 0.99f;
+	void SetVelocity();
+	FVector ClimbVelocity;
 
-	UPROPERTY(EditAnywhere)
-	bool MyBool = true;
-
-	UPROPERTY(EditAnywhere)
-	int32 InputA;
-
-	UPROPERTY(EditAnywhere)
-	int32 InputB;
-
-	UPROPERTY(EditAnywhere)
-	int32 APlusB;
-
-	UPROPERTY(EditAnywhere)
-	float InputC;
-
-	UPROPERTY(EditAnywhere)
-	float InputD;
-
-	UPROPERTY(EditAnywhere)
-	float CPlusD;
+	void ClimbingPlatform(float DeltaTime);
+	UPROPERTY(EditAnywhere, Category = "Climbing")
+	bool ClimbEnabled = false;
+	UPROPERTY(EditAnywhere, Category = "Climbing")
+	float ClimbSpeed = 100.f;
+	UPROPERTY(EditAnywhere, Category = "Climbing", meta = (ClampMin = "0.0", ClampMax = "1200.0"))
+	float ClimbDistance = 1189.f;
 
 };

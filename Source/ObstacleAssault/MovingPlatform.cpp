@@ -16,10 +16,8 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 
-	APlusB = InputA + InputB;
-
-	CPlusD = InputC + InputD;
-
+	StartLocation = GetActorLocation();
+	SetVelocity();
 }
 
 // Called every frame
@@ -27,5 +25,32 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	ClimbingPlatform(DeltaTime);
+}
+
+void AMovingPlatform::SetVelocity()
+{
+	ClimbVelocity = FVector(0, 0, ClimbSpeed);
+}
+
+void AMovingPlatform::ClimbingPlatform(float DeltaTime)
+{
+	if (ClimbEnabled == true)
+	{
+		FVector ClimbLocation = GetActorLocation();
+		ClimbLocation = ClimbLocation + (ClimbVelocity * DeltaTime);
+
+		SetActorLocation(ClimbLocation);
+
+		float DistanceClimbed = FVector::Dist(StartLocation, ClimbLocation);
+
+		if (DistanceClimbed > ClimbDistance)
+		{
+			FVector ClimbDirection = ClimbVelocity.GetSafeNormal();
+			StartLocation = StartLocation + ClimbDirection * ClimbDistance;
+			SetActorLocation(StartLocation);
+			ClimbVelocity = -ClimbVelocity;
+		}
+	}
 }
 
