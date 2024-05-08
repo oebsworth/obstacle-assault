@@ -27,6 +27,7 @@ public:
 
 	void SetVelocity();
 	FVector ClimbVelocity;
+	FVector ScrollingVelocity;
 
 	void ClimbingPlatform(float DeltaTime);
 	UPROPERTY(EditAnywhere, Category = "Climbing")
@@ -35,5 +36,13 @@ public:
 	float ClimbSpeed = 100.f;
 	UPROPERTY(EditAnywhere, Category = "Climbing", meta = (ClampMin = "0.0", ClampMax = "1200.0"))
 	float ClimbDistance = 1189.f;
+
+	void ScrollingPlatform(float DeltaTime);
+	UPROPERTY(EditAnywhere, Category = "Scrolling")
+	bool ScrollingEnabled = false;
+	UPROPERTY(EditAnywhere, Category = "Scrolling")
+	float ScrollingSpeed = 100.f;
+	UPROPERTY(EditAnywhere, Category = "Scrolling")
+	float ScrollingDistance = 1189.f;
 
 };

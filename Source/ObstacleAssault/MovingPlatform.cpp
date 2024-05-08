@@ -26,11 +26,13 @@ void AMovingPlatform::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	ClimbingPlatform(DeltaTime);
+	ScrollingPlatform(DeltaTime);
 }
 
 void AMovingPlatform::SetVelocity()
 {
 	ClimbVelocity = FVector(0, 0, ClimbSpeed);
+	ScrollingVelocity = FVector(0, ScrollingSpeed, 0);
 }
 
 void AMovingPlatform::ClimbingPlatform(float DeltaTime)
@@ -50,6 +52,27 @@ void AMovingPlatform::ClimbingPlatform(float DeltaTime)
 			StartLocation = StartLocation + ClimbDirection * ClimbDistance;
 			SetActorLocation(StartLocation);
 			ClimbVelocity = -ClimbVelocity;
+		}
+	}
+}
+
+void AMovingPlatform::ScrollingPlatform(float DeltaTime)
+{
+	if (ScrollingEnabled == true)
+	{
+		FVector ScrollingLocation = GetActorLocation();
+		ScrollingLocation = ScrollingLocation + (ScrollingVelocity * DeltaTime);
+
+		SetActorLocation(ScrollingLocation);
+
+		float DistanceScrolled = FVector::Dist(StartLocation, ScrollingLocation);
+
+		if (DistanceScrolled > ScrollingDistance)
+		{
+			FVector ScrollingDirection = ScrollingVelocity.GetSafeNormal();
+			StartLocation = StartLocation + ScrollingDirection * ScrollingDistance;
+			SetActorLocation(StartLocation);
+			ScrollingVelocity = -ScrollingVelocity;
 		}
 	}
 }
