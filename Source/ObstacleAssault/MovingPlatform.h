@@ -24,6 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	FVector StartLocation;
+	FRotator RotatingVelocity;
 
 	void SetVelocity();
 	FVector ClimbVelocity;
@@ -45,4 +46,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Scrolling")
 	float ScrollingDistance = 1189.f;
 
+	void RotatingPlatform(float DeltaTime);
+	UPROPERTY(EditAnywhere, Category = "Rotating")
+	bool RotatingEnabled = false;
+	UPROPERTY(EditAnywhere, Category = "Rotating")
+	float RotateSpeed = 100.f;
 };

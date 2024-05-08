@@ -27,12 +27,15 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 	ClimbingPlatform(DeltaTime);
 	ScrollingPlatform(DeltaTime);
+	RotatingPlatform(DeltaTime);
 }
 
 void AMovingPlatform::SetVelocity()
 {
 	ClimbVelocity = FVector(0, 0, ClimbSpeed);
 	ScrollingVelocity = FVector(0, ScrollingSpeed, 0);
+
+	RotatingVelocity = FRotator(0, RotateSpeed, 0);
 }
 
 void AMovingPlatform::ClimbingPlatform(float DeltaTime)
@@ -74,6 +77,17 @@ void AMovingPlatform::ScrollingPlatform(float DeltaTime)
 			SetActorLocation(StartLocation);
 			ScrollingVelocity = -ScrollingVelocity;
 		}
+	}
+}
+
+void AMovingPlatform::RotatingPlatform(float DeltaTime)
+{
+	if (RotatingEnabled == true)
+	{
+		FRotator ActorRotation = GetActorRotation();
+		ActorRotation = ActorRotation + (RotatingVelocity * DeltaTime);
+
+		SetActorRotation(ActorRotation);
 	}
 }
 
