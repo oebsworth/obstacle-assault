@@ -33,8 +33,16 @@ void AMovingPlatform::Tick(float DeltaTime)
 void AMovingPlatform::SetVelocity()
 {
 	ClimbVelocity = FVector(0, 0, ClimbSpeed);
-	ScrollingVelocity = FVector(0, ScrollingSpeed, 0);
 
+	if (XAxis == true)
+	{
+		ScrollingVelocity = FVector(ScrollingSpeed, 0, 0);
+	}
+	else 
+	{
+		ScrollingVelocity = FVector(0, ScrollingSpeed, 0);
+	}
+	
 	RotatingVelocity = FRotator(0, RotateSpeed, 0);
 }
 
