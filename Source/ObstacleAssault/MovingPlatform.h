@@ -44,6 +44,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Scrolling")
 	bool XAxis = true;
 	UPROPERTY(EditAnywhere, Category = "Scrolling")
+	bool FlipDirection = false;
+	UPROPERTY(EditAnywhere, Category = "Scrolling")
 	float ScrollingSpeed = 100.f;
 	UPROPERTY(EditAnywhere, Category = "Scrolling")
 	float ScrollingDistance = 1189.f;

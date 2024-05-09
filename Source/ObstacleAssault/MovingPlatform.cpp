@@ -34,6 +34,11 @@ void AMovingPlatform::SetVelocity()
 {
 	ClimbVelocity = FVector(0, 0, ClimbSpeed);
 
+	if (FlipDirection == true)
+	{
+		ScrollingSpeed = -ScrollingSpeed;
+	}
+
 	if (XAxis == true)
 	{
 		ScrollingVelocity = FVector(ScrollingSpeed, 0, 0);
@@ -42,7 +47,7 @@ void AMovingPlatform::SetVelocity()
 	{
 		ScrollingVelocity = FVector(0, ScrollingSpeed, 0);
 	}
-	
+
 	RotatingVelocity = FRotator(0, RotateSpeed, 0);
 }
 
